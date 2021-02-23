@@ -2,19 +2,18 @@ import React from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 
-import mapMarketImg from '../images/map-marker.svg';
+import mapMarketImg from '../assets/images/map-marker.svg';
 
 import '../styles/components/sidebar.css';
 
-export default function Sidebar() {
+function Sidebar() {
   const { goBack } = useHistory();
 
-
   return (
-    <aside>
-      <img src={mapMarketImg} alt="Happy" />
+    <aside className="app-sidebar">
+      <img src={mapMarketImg} alt="Happy"/>
 
-      <footer>
+      <footer className="app-sidebar">
         <button type="button" onClick={goBack}>
           <FiArrowLeft size={24} color="#FFF"/>
         </button>
@@ -22,3 +21,5 @@ export default function Sidebar() {
     </aside>
   );
 }
+
+export default Sidebar;
