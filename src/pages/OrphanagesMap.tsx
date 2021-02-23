@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import Leaflet from 'leaflet';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import mapMarketImg from '../assets/images/map-marker.svg';
 
@@ -24,6 +25,7 @@ interface Orphanage {
 }
 
 function OrphanagesMap() {
+  const { goBack } = useHistory();
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ function OrphanagesMap() {
       <aside>
         <header>
           <img src={mapMarketImg} alt="Happy" />
-
+          
           <h2>Escolha um orfanato no mapa</h2>
           <p>Muitas crianças estão esperando a sua visita :)</p>
         </header>
@@ -45,6 +47,9 @@ function OrphanagesMap() {
         <footer>
           <strong>Minas Gerais</strong>
           <span>Belo Horizonte</span>
+          <button type="button" onClick={goBack}>
+            <FiArrowLeft size={24} color="#FFF"/>
+          </button>
         </footer>
       </aside>
 
@@ -59,8 +64,8 @@ function OrphanagesMap() {
 
         {orphanages.map(orphanage => {
           return (
-            <Marker 
-              icon={mapIcon} 
+            <Marker
+              icon={mapIcon}
               position={[orphanage.latitude, orphanage.longitude]}
               key={orphanage.id}
             >
@@ -71,9 +76,8 @@ function OrphanagesMap() {
                 </Link>
               </Popup>
             </Marker>
-          )
+          );
         })}
-
       </Map>
 
       <Link to="orphanages/create" className="create-orphanage">
