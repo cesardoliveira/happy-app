@@ -35,7 +35,7 @@ function Orphanage() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
-    api.get(`orphanage/${params.id}`).then(response => {
+    api.get(`orphanages/${params.id}`).then(response => {
       setOrphanage(response.data);
     })
   }, [params.id]);
@@ -110,7 +110,7 @@ function Orphanage() {
               <div className="hour">
                 <FiClock size={32} color="#15B6D6" />
                 Segunda à Sexta <br />
-                8h às 18h
+                {orphanage.opening_hours}
               </div>
               {orphanage.open_on_weekends ? (
                 <div className="open-on-weekends">
